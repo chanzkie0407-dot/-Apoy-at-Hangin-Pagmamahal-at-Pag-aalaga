@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoy at Hangin — Pagmamahal at Pag-aalaga</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- LOBBY SCREEN -->
+        <div id="lobby-screen" class="screen active">
+            <div class="header">
+                <span class="symbol aries">♈</span>
+                <h1>Apoy & Hangin</h1>
+                <span class="symbol aquarius">♒</span>
+            </div>
+            <p class="subtitle">120 Tanong tungkol sa Pagmamahal, Pag-aalaga, at Relasyon</p>
+            
+            <div class="card">
+                <h3>🏠 Gumawa ng Kwarto</h3>
+                <button id="create-room-btn" class="btn primary">Gumawa ng Bagong Kwarto</button>
+                <div id="room-code-display" class="code-box hidden">
+                    <p>Ipadala ang code sa iyong kasama:</p>
+                    <div class="code" id="room-code">------</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔑 Pumasok sa Kwarto</h3>
+                <input type="text" id="join-code" placeholder="Ilagay ang 6-digit code" maxlength="6">
+                <button id="join-room-btn" class="btn secondary">Pumasok</button>
+            </div>
+
+            <div class="divider">o laruin mag-isa</div>
+
+            <button id="solo-mode-btn" class="btn tertiary">Magbasa ng Tanong Lang</button>
+        </div>
+
+        <!-- SET SELECTION SCREEN -->
+        <div id="set-screen" class="screen">
+            <h2>Pumili ng Set ng Tanong</h2>
+            <div class="set-grid">
+                <button class="set-btn" data-set="1">
+                    <span class="set-num">1</span>
+                    <span class="set-name">Ano ang Pagmamahal?</span>
+                </button>
+                <button class="set-btn" data-set="2">
+                    <span class="set-num">2</span>
+                    <span class="set-name">Pagharap ng Hamon</span>
+                </button>
+                <button class="set-btn" data-set="3">
+                    <span class="set-num">3</span>
+                    <span class="set-name">Lumago Nang Magkasama</span>
+                </button>
+                <button class="set-btn" data-set="4">
+                    <span class="set-num">4</span>
+                    <span class="set-name">Pinakamalalim</span>
+                </button>
+            </div>
+            <button id="random-btn" class="btn random">🎲 Random na Tanong</button>
+            <button id="back-to-lobby" class="btn back">← Bumalik</button>
+        </div>
+
+        <!-- QUESTION SCREEN -->
+        <div id="question-screen" class="screen">
+            <div class="progress-bar">
+                <span id="set-label">Set 1</span>
+                <span id="q-counter">1 / 30</span>
+            </div>
+            
+            <div class="question-card">
+                <p id="question-text" class="question">Tanong dito...</p>
+            </div>
+
+            <div class="nav-buttons">
+                <button id="prev-btn" class="btn nav">← Nakaraan</button>
+                <button id="next-btn" class="btn nav">Susunod →</button>
+            </div>
+
+            <div class="bottom-nav">
+                <button id="change-set-btn" class="btn small">Palitan ang Set</button>
+                <button id="dark-toggle" class="btn small">🌙 Madilim</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Config — Kopyahin mo ang sarili mong config dito -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <script>
+        // 👇 PALITAN MO ITO gamit ang sarili mong Firebase config
+        const FIREBASE_CONFIG = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_PROJECT.firebaseapp.com",
+            databaseURL: "https://YOUR_PROJECT-default-rtdb.firebaseio.com",
+            projectId: "YOUR_PROJECT",
+            storageBucket: "YOUR_PROJECT.appspot.com",
+            messagingSenderId: "YOUR_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+        firebase.initializeApp(FIREBASE_CONFIG);
+        const db = firebase.database();
+    </script>
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
